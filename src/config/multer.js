@@ -2,8 +2,6 @@
  * Este arquivo de configuração gerencia o arquivo que vai ser recebido na requisição
  * Aqui configuramos o nome, o tamanho e os tipos permitidos
  */
-require("dotenv").config();
-
 const multer = require("multer");
 const path = require("path");
 const crypto = require("crypto");
@@ -46,7 +44,7 @@ const storageType = {
 
 module.exports = {
   dest: path.resolve(__dirname, "..", "..", "tmp", "uploads"),
-  storage: storageType.s3,
+  storage: storageType[process.env.STORAGE_TYPE],
 
   //Definindo o tamanho do arquivo permitido
   limits: {
